@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch Viva Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --cream:#faf5ea;
+  --warm:#fffdf7;
+  --tan:#e8d9be;
+  --tan-light:#f0e6cf;
+  --tan-mid:#c8aa7a;
+  --brown:#7a5c38;
+  --dark:#2c1a08;
+  --mid:#9e7a50;
+  --red:#7a1a1a;
+  --green:#2a5c3f;
+  --gold:#9a7010;
+  --text:#1e1208;
+  --text-mid:#4a3020;
+  --text-soft:#8a6a4a;
+  --shadow:0 1px 6px rgba(44,26,8,.07),0 3px 14px rgba(44,26,8,.07);
+  --shadow-h:0 4px 20px rgba(44,26,8,.13);
+  --r:12px;--rs:7px;
+}
+
+body{
+  background:var(--cream);
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238a6a4a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  font-family:'Lato',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:4rem;
+}
+
+/* ── Header ── */
+.hdr{
+  background:var(--dark);
+  color:#fff;
+  padding:2.2rem 1.5rem 1.8rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hdr::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--tan-mid),var(--tan),var(--tan-mid),transparent);
+}
+.hdr-in{position:relative;z-index:1;}
+
+.flag{
+  display:inline-flex;
+  border-radius:3px;
+  overflow:hidden;
+  margin-bottom:1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.5);
+  gap:0;
+}
+.f1{background:#1a1a1a;width:28px;height:16px;}
+.f2{background:#aa2020;width:28px;height:16px;}
+.f3{background:#e8b820;width:28px;height:16px;}
+
+.h-title{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:clamp(2.2rem,6.5vw,3.4rem);
+  font-weight:400;
+  color:#fff;
+  line-height:1.05;
+  text-shadow:0 2px 16px rgba(0,0,0,.4);
+  letter-spacing:.02em;
+}
+.h-title span{color:var(--tan);}
+
+.h-orn{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  margin:.55rem 0 .4rem;
+  color:rgba(255,255,255,.25);
+  font-size:.7rem;
+  letter-spacing:.15em;
+}
+.h-orn-line{flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2));}
+.h-orn-line.r{background:linear-gradient(90deg,rgba(255,255,255,.2),transparent);}
+
+.h-sub{
+  font-size:.88rem;
+  color:rgba(255,255,255,.55);
+  font-style:italic;
+  font-family:'Lato',sans-serif;
+  letter-spacing:.01em;
+}
+.h-pill{
+  display:inline-block;
+  margin-top:.85rem;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;
+  padding:.28rem 1rem;
+  font-size:.73rem;
+  color:rgba(255,255,255,.6);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-family:'Lato',sans-serif;
+}
+
+/* ── Sticky controls ── */
+.ctrl{
+  position:sticky;top:0;z-index:50;
+  background:var(--dark);
+  padding:.8rem 1.25rem .65rem;
+  border-bottom:1px solid rgba(200,170,122,.3);
+}
+.search-box{
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:8px;
+  padding:.48rem 1rem .48rem .8rem;
+  transition:border-color .2s;
+}
+.search-box:focus-within{border-color:rgba(232,217,190,.45);}
+.s-icon{font-size:.9rem;color:rgba(255,255,255,.4);flex-shrink:0;}
+#si{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Lato',sans-serif;font-size:.93rem;
+  color:#fff;min-width:0;
+}
+#si::placeholder{color:rgba(255,255,255,.35);}
+.clr{
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.3);font-size:.95rem;
+  padding:0;line-height:1;display:none;flex-shrink:0;
+}
+.clr.on{display:block;}
+.clr:hover{color:rgba(255,255,255,.6);}
+
+.chips{
+  display:flex;gap:.35rem;
+  overflow-x:auto;padding-top:.6rem;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.chips::-webkit-scrollbar{display:none;}
+.chip{
+  flex-shrink:0;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.5);
+  border-radius:5px;
+  padding:.22rem .7rem;
+  font-size:.75rem;
+  font-family:'Lato',sans-serif;
+  cursor:pointer;
+  transition:all .15s;
+  white-space:nowrap;
+  letter-spacing:.01em;
+}
+.chip:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
+.chip.on{
+  background:var(--tan);
+  color:var(--dark);
+  border-color:var(--tan);
+  font-weight:700;
+}
+
+/* ── Main ── */
+.main{max-width:680px;margin:0 auto;padding:1.3rem 1rem 1rem;}
+.bar{
+  font-size:.76rem;color:var(--text-soft);
+  margin-bottom:.9rem;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Lato',sans-serif;
+}
+.xpnd{
+  background:none;
+  border:1px solid var(--tan-mid);
+  border-radius:5px;
+  padding:.22rem .7rem;
+  font-size:.74rem;color:var(--brown);
+  font-family:'Lato',sans-serif;
+  cursor:pointer;transition:background .15s,color .15s;
+  letter-spacing:.01em;
+}
+.xpnd:hover{background:var(--tan-light);color:var(--dark);}
+
+/* ── Card ── */
+.card{
+  background:var(--warm);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  margin-bottom:.6rem;
+  overflow:hidden;
+  border:1px solid rgba(200,170,122,.25);
+  transition:box-shadow .2s,border-color .2s;
+}
+.card:hover{box-shadow:var(--shadow-h);border-color:rgba(200,170,122,.4);}
+
+.qh{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.85rem 1rem .85rem .9rem;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+
+/* ── Number badge — properly centered ── */
+.qn{
+  flex-shrink:0;
+  width:32px;height:32px;
+  background:var(--dark);
+  color:var(--tan);
+  border-radius:50%;
+  /* bullet-proof centering */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Lato',sans-serif;
+  font-size:.7rem;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:0;
+  /* no margin-top — flex align-items:center on parent handles vertical */
+}
+
+.qt{flex:1;min-width:0;}
+.qg{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;
+  color:var(--text);line-height:1.4;
+  letter-spacing:.01em;
+}
+.qe{
+  font-size:.8rem;color:var(--text-soft);
+  margin-top:.15rem;font-style:italic;
+  font-family:'Lato',sans-serif;
+}
+.dot{
+  display:inline-block;width:6px;height:6px;
+  border-radius:50%;margin-right:6px;
+  vertical-align:middle;position:relative;top:-1px;flex-shrink:0;
+}
+.chev{
+  flex-shrink:0;
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--tan-light);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.65rem;color:var(--brown);
+  transition:transform .25s ease,background .2s;
+  flex-shrink:0;
+}
+.card.op .chev{transform:rotate(180deg);background:var(--tan);}
+
+/* ── Answer panel ── */
+.qb{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease;
+}
+.card.op .qb{max-height:1600px;}
+.qbi{
+  padding:.75rem 1rem 1rem;
+  border-top:1px solid rgba(200,170,122,.2);
+}
+.albl{
+  font-size:.67rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--tan-mid);margin-bottom:.55rem;
+  font-family:'Lato',sans-serif;
+}
+
+.ai{
+  padding:.62rem .8rem;
+  border-radius:var(--rs);
+  background:var(--cream);
+  border-left:3px solid var(--tan-mid);
+  margin-bottom:.38rem;
+}
+.ai:last-of-type{margin-bottom:0;}
+.ai:nth-child(2){border-left-color:#b07840;}
+.ai:nth-child(3){border-left-color:#9a7010;}
+.ai:nth-child(4){border-left-color:#2a5c3f;}
+
+.ag{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.08rem;font-weight:600;
+  color:var(--text);line-height:1.5;
+  letter-spacing:.01em;display:block;
+}
+.ae{
+  font-size:.79rem;color:var(--text-soft);
+  font-style:italic;
+  font-family:'Lato',sans-serif;
+  display:block;margin-top:2px;
+}
+
+.note{
+  margin-top:.6rem;
+  padding:.55rem .75rem;
+  background:#fdf5e4;
+  border-radius:var(--rs);
+  border:1px solid rgba(154,112,16,.18);
+  display:flex;gap:.45rem;align-items:flex-start;
+}
+.ni{font-size:.88rem;flex-shrink:0;margin-top:1px;}
+.nt{font-size:.79rem;color:var(--text-mid);line-height:1.58;font-family:'Lato',sans-serif;}
+
+/* topic dot colors */
+.di{background:#aa2828;}.ds{background:#2060a0;}.dl{background:#6a3490;}
+.dh{background:#218050;}.df{background:#c06820;}.dfa{background:#b04810;}
+.dt{background:#107868;}.dm{background:#707878;}
+
+/* Empty */
+.empty{text-align:center;padding:4rem 1rem;display:none;}
+.empty-icon{font-size:2rem;margin-bottom:.6rem;}
+.empty p{color:var(--text-soft);font-style:italic;font-size:.88rem;font-family:'Lato',sans-serif;line-height:1.6;}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:2rem 1rem 1.5rem;
+  color:var(--text-soft);
+  font-size:.78rem;
+  font-family:'Lato',sans-serif;
+  border-top:1px solid var(--tan);
+  margin-top:1rem;
+}
+.foot-title{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:1.35rem;
+  font-weight:400;
+  color:var(--brown);
+  display:block;
+  margin-bottom:.3rem;
+  letter-spacing:.03em;
+}
+.foot-sub{color:var(--text-soft);font-style:italic;}
+
+mark{background:rgba(154,112,16,.18);color:inherit;border-radius:2px;}
+
+@media(max-width:500px){
+  .h-title{font-size:2rem;}
+  .qg{font-size:1.04rem;}
+  .main{padding:1rem .75rem;}
+  .qh{gap:.65rem;padding:.8rem .85rem .8rem .8rem;}
+  .qn{width:28px;height:28px;font-size:.65rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
+    <div class="h-title">Deutsch <span>Viva Guide</span></div>
+    <div class="h-orn">
+      <span class="h-orn-line"></span>
+      <span>✦</span>
+      <span class="h-orn-line r"></span>
+    </div>
+    <div class="h-sub">German for Beginners &mdash; All 50 Questions &amp; Answers</div>
+    <div class="h-pill">Willkommen · 3rd Edition</div>
+  </div>
+</header>
+
+<div class="ctrl">
+  <div class="search-box">
+    <span class="s-icon">🔍</span>
+    <input type="text" id="si" placeholder="Search a question or English meaning…" oninput="doSearch()" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button class="clr" id="clrBtn" onclick="clearS()">✕</button>
+  </div>
+  <div class="chips">
+    <button class="chip on" onclick="setT('all',this)">All (50)</button>
+    <button class="chip" onclick="setT('identity',this)">👤 Identity</button>
+    <button class="chip" onclick="setT('study',this)">📚 Studies</button>
+    <button class="chip" onclick="setT('language',this)">💬 Language</button>
+    <button class="chip" onclick="setT('hobbies',this)">⚽ Hobbies</button>
+    <button class="chip" onclick="setT('food',this)">🍛 Food &amp; Drink</button>
+    <button class="chip" onclick="setT('family',this)">👨‍👩‍👧 Family</button>
+    <button class="chip" onclick="setT('time',this)">🕐 Time &amp; Plans</button>
+    <button class="chip" onclick="setT('misc',this)">✨ Dreams &amp; More</button>
+  </div>
+</div>
+
+<main class="main">
+  <div class="bar"><span id="cnt"></span><button class="xpnd" onclick="xpndAll()">Expand all</button></div>
+  <div id="list"></div>
+  <div class="empty" id="empty"><div class="empty-icon">🔎</div><p>No questions found.<br>Try a different word or clear the search.</p></div>
+</main>
+
+<footer>
+  <span class="foot-title">Viel Erfolg bei der Prüfung!</span>
+  <span class="foot-sub">Good luck with your exam &nbsp;✦&nbsp; Willkommen, 3rd Edition</span>
+</footer>
+
+<script>
+const TC={identity:'di',study:'ds',language:'dl',hobbies:'dh',food:'df',family:'dfa',time:'dt',misc:'dm'};
+const Q=[
+  {n:1,t:'identity',g:'Wie heißen Sie? / Wie ist Ihr Name?',m:'What is your name? (formal)',a:[
+    {g:'Ich heiße [Ihr Name].',e:'My name is [Your Name].'},
+    {g:'Mein Name ist [Ihr Name].',e:'My name is [Your Name].'},
+    {g:'Ich bin [Ihr Name].',e:'I am [Your Name].'}
+  ],note:'All three are correct! Replace [Ihr Name] with your name. "Heiße" means "am called".'},
+  {n:2,t:'identity',g:'Wie ist Ihr Vorname? / Familienname (Nachname)?',m:'What is your first name? / Last name?',a:[
+    {g:'Mein Vorname ist [Vorname].',e:'My first name is [First Name].'},
+    {g:'Mein Familienname ist [Nachname].',e:'My family name / last name is [Last Name].'}
+  ],note:'"Vorname" = first name. "Familienname" or "Nachname" = surname. Two different words, same meaning!'},
+  {n:3,t:'identity',g:'Bitte buchstabieren Sie. / Wie schreibt man das?',m:'Please spell that. / How do you spell that?',a:[
+    {g:'Das schreibt man: P – R – A – N – J – A – L.',e:'You spell it: P – R – A – N – J – A – L.'},
+    {g:'[Buchstabieren Sie Ihren Namen Buchstabe für Buchstabe].',e:'[Spell your name letter by letter].'}
+  ],note:'Learn the German alphabet! Key letters: J = "yot", W = "veh", Z = "tset", ß = "Eszett". Practise your own name!'},
+  {n:4,t:'identity',g:'Woher kommen Sie?',m:'Where do you come from? (formal)',a:[
+    {g:'Ich komme aus Indien.',e:'I come from India.'},
+    {g:'Ich komme aus Bangalore.',e:'I come from Bangalore.'},
+    {g:'Ich bin aus Indien.',e:'I am from India.'}
+  ],note:'"Woher" = from where. "Kommen" = to come. Use "aus" + country or city name.'},
+  {n:5,t:'identity',g:'Aus welchem Land kommen Sie? / Welche Nationalität haben Sie?',m:'Which country are you from? / What is your nationality?',a:[
+    {g:'Ich komme aus Indien.',e:'I come from India.'},
+    {g:'Ich bin Inder. (male) / Ich bin Inderin. (female)',e:'I am Indian. (male / female)'},
+    {g:'Meine Nationalität ist indisch.',e:'My nationality is Indian.'}
+  ],note:'German has gendered nouns: "Inder" (m) / "Inderin" (f). Similarly: "Deutscher" / "Deutsche" for German nationality.'},
+  {n:6,t:'identity',g:'Wo liegt Indien?',m:'Where is India located?',a:[
+    {g:'Indien liegt in Südasien.',e:'India is located in South Asia.'},
+    {g:'Indien liegt im Süden Asiens.',e:'India lies in the south of Asia.'},
+    {g:'Indien liegt zwischen Pakistan und Bangladesch.',e:'India lies between Pakistan and Bangladesh.'}
+  ],note:'"Liegt" = lies / is located. "Südasien" = South Asia. A great geography sentence to impress the examiner!'},
+  {n:7,t:'identity',g:'Wo wohnen Sie?',m:'Where do you live?',a:[
+    {g:'Ich wohne in Bangalore.',e:'I live in Bangalore.'},
+    {g:'Ich wohne in [Stadt], Indien.',e:'I live in [City], India.'},
+    {g:'Ich wohne im Studentenwohnheim.',e:'I live in a student dormitory.'}
+  ],note:'"Wohnen" = to reside/live at a place. More specific than "leben" (to live in general). Use for your address.'},
+  {n:8,t:'identity',g:'Wie ist Ihre Adresse?',m:'What is your address?',a:[
+    {g:'Meine Adresse ist [Straße, Hausnummer, Stadt].',e:'My address is [Street, Number, City].'},
+    {g:'Ich wohne in der [Straße] Nummer [X] in [Stadt].',e:'I live at [Street] Number [X] in [City].'}
+  ],note:'In German addresses the house number comes AFTER the street name, e.g. "Hauptstraße 12". "Straße" = street.'},
+  {n:9,t:'study',g:'Sind Sie Student / Studentin?',m:'Are you a student? (male / female)',a:[
+    {g:'Ja, ich bin Student. (male)',e:'Yes, I am a student. (if male)'},
+    {g:'Ja, ich bin Studentin. (female)',e:'Yes, I am a student. (if female)'},
+    {g:'Ja, ich studiere an der Universität.',e:'Yes, I study at the university.'}
+  ],note:'Always pick the right gender form for yourself: "Student" (m) or "Studentin" (f). This is important in German!'},
+  {n:10,t:'study',g:'Wo studieren Sie?',m:'Where do you study?',a:[
+    {g:'Ich studiere an der [Name der Universität].',e:'I study at [University Name].'},
+    {g:'Ich studiere an einem College in Bangalore.',e:'I study at a college in Bangalore.'}
+  ],note:'"An der Universität" = at the university. "An" is used with institutions and takes the dative case.'},
+  {n:11,t:'study',g:'Was studieren Sie?',m:'What do you study?',a:[
+    {g:'Ich studiere Informatik.',e:'I study Computer Science.'},
+    {g:'Ich studiere Ingenieurwissenschaften.',e:'I study Engineering.'},
+    {g:'Ich studiere Betriebswirtschaft (BWL).',e:'I study Business Administration.'},
+    {g:'Ich studiere Medizin / Jura / Physik.',e:'I study Medicine / Law / Physics.'}
+  ],note:'No article needed with subject names: "Ich studiere Informatik" — NOT "die Informatik".'},
+  {n:12,t:'study',g:'Seit wann studieren Sie hier?',m:'Since when / How long have you been studying here?',a:[
+    {g:'Ich studiere seit zwei Jahren hier.',e:'I have been studying here for two years.'},
+    {g:'Ich studiere seit einem Jahr hier.',e:'I have been studying here for one year.'},
+    {g:'Ich studiere seit 2022 hier.',e:'I have been studying here since 2022.'}
+  ],note:'Key rule: "seit" uses PRESENT tense in German, not perfect tense. "Seit zwei Jahren" = for two years.'},
+  {n:13,t:'study',g:'Wie finden Sie Ihr Studium?',m:'How do you find your studies? / What do you think of them?',a:[
+    {g:'Ich finde mein Studium sehr interessant.',e:'I find my studies very interesting.'},
+    {g:'Es ist manchmal schwierig, aber ich mag es.',e:'It is sometimes difficult, but I like it.'},
+    {g:'Mein Studium macht mir viel Spaß.',e:'My studies are a lot of fun for me.'}
+  ],note:'"Finden" = to think/find (for opinions). "Spaß machen" = to be fun. "Mir" = dative "me". Great phrase!'},
+  {n:14,t:'language',g:'Lernen Sie Deutsch?',m:'Are you learning German?',a:[
+    {g:'Ja, ich lerne Deutsch.',e:'Yes, I am learning German.'},
+    {g:'Ja, ich lerne seit einigen Monaten Deutsch.',e:'Yes, I have been learning German for a few months.'},
+    {g:'Ja, Deutsch ist sehr interessant!',e:'Yes, German is very interesting!'}
+  ],note:'"Lernen" = to learn (general). "Studieren" = university study. Use "lernen" for learning a language.'},
+  {n:15,t:'language',g:'Sprechen Sie Deutsch?',m:'Do you speak German?',a:[
+    {g:'Ja, ich spreche ein bisschen Deutsch.',e:'Yes, I speak a little German.'},
+    {g:'Ich spreche Deutsch auf Anfängerniveau.',e:'I speak German at beginner level.'},
+    {g:'Noch nicht so gut, aber ich lerne.',e:'Not so well yet, but I am learning.'}
+  ],note:'Be honest! "Ein bisschen" (a little) is perfect for beginners. Never just say "nein" — say your level.'},
+  {n:16,t:'language',g:'Welche Sprachen sprechen Sie?',m:'Which languages do you speak?',a:[
+    {g:'Ich spreche Englisch, Hindi und Kannada.',e:'I speak English, Hindi and Kannada.'},
+    {g:'Meine Muttersprache ist [Sprache]. Ich spreche auch Englisch und Deutsch.',e:'My mother tongue is [Language]. I also speak English and German.'},
+    {g:'Ich spreche fließend Englisch und lerne Deutsch.',e:'I speak English fluently and am learning German.'}
+  ],note:'"Muttersprache" = mother tongue. "Fließend" = fluently. Language names are always capitalised in German.'},
+  {n:17,t:'identity',g:'Wann haben Sie Geburtstag? / Was ist Ihr Geburtsdatum?',m:'When is your birthday? / What is your date of birth?',a:[
+    {g:'Ich habe am fünfzehnten März Geburtstag.',e:'My birthday is on the 15th of March.'},
+    {g:'Ich habe am [Datum] Geburtstag.',e:'My birthday is on [Date].'},
+    {g:'Mein Geburtsdatum ist der [Datum].',e:'My date of birth is [Date].'}
+  ],note:'Ordinal numbers: 1.=erste, 2.=zweite, 3.=dritte, add "-te" up to 19th, "-ste" from 20th. "Am" = on the (dative).'},
+  {n:18,t:'identity',g:'Wie alt sind Sie?',m:'How old are you?',a:[
+    {g:'Ich bin zwanzig Jahre alt.',e:'I am twenty years old.'},
+    {g:'Ich bin einundzwanzig Jahre alt.',e:'I am twenty-one years old.'},
+    {g:'Ich bin [Zahl] Jahre alt.',e:'I am [Number] years old.'}
+  ],note:'Always say "Jahre alt" — never drop "Jahre". Numbers 21+ are ONE word: einundzwanzig (21), zweiundzwanzig (22).'},
+  {n:19,t:'identity',g:'Sind Sie verheiratet?',m:'Are you married?',a:[
+    {g:'Nein, ich bin ledig.',e:'No, I am single.'},
+    {g:'Ja, ich bin verheiratet.',e:'Yes, I am married.'},
+    {g:'Ich bin noch ledig.',e:'I am still single.'}
+  ],note:'"Verheiratet" = married. "Ledig" = single/unmarried. "Noch ledig" sounds very natural and fluent.'},
+  {n:20,t:'identity',g:'Wie ist Ihre Handynummer?',m:'What is your mobile phone number?',a:[
+    {g:'Meine Handynummer ist [Nummer].',e:'My mobile number is [Number].'},
+    {g:'Meine Telefonnummer ist null-neun-eins-eins-…',e:'My phone number is 0-9-1-1-…'}
+  ],note:'"Handy" in German = mobile phone (not the English "handy"!). Numbers are usually read digit by digit.'},
+  {n:21,t:'hobbies',g:'Was machen Sie in Ihrer Freizeit?',m:'What do you do in your free time?',a:[
+    {g:'In meiner Freizeit lese ich gern Bücher.',e:'In my free time, I like to read books.'},
+    {g:'Ich höre gern Musik und treffe Freunde.',e:'I like to listen to music and meet friends.'},
+    {g:'Ich spiele gern Computerspiele.',e:'I like to play computer games.'}
+  ],note:'"Freizeit" = free time. "Gern" = gladly/like to. Place it after the verb: "Ich lese gern" = I like to read.'},
+  {n:22,t:'hobbies',g:'Was sind Ihre Hobbys?',m:'What are your hobbies?',a:[
+    {g:'Meine Hobbys sind Lesen, Musik hören und Kochen.',e:'My hobbies are reading, listening to music, and cooking.'},
+    {g:'Ich interessiere mich für Fotografie und Reisen.',e:'I am interested in photography and travelling.'},
+    {g:'Ich male gern und spiele Gitarre.',e:'I like to paint and play guitar.'}
+  ],note:'Infinitives used as nouns are capitalised: "das Lesen", "das Kochen". List with "und" (and).'},
+  {n:23,t:'hobbies',g:'Treiben Sie gern Sport?',m:'Do you like doing sports?',a:[
+    {g:'Ja, ich treibe gern Sport.',e:'Yes, I like doing sports.'},
+    {g:'Ja, ich treibe sehr gern Sport. Ich spiele Cricket.',e:'Yes, I really like sports. I play cricket.'},
+    {g:'Nein, ich treibe nicht so gern Sport.',e:'No, I don\'t really like doing sports.'}
+  ],note:'"Sport treiben" is the fixed phrase for doing sports — do NOT say "Sport machen". Very important to memorise!'},
+  {n:24,t:'hobbies',g:'Welche Sportart mögen Sie?',m:'Which type of sport do you like?',a:[
+    {g:'Ich mag Cricket / Fußball / Badminton.',e:'I like cricket / football / badminton.'},
+    {g:'Meine Lieblingssportart ist Schwimmen.',e:'My favourite sport is swimming.'},
+    {g:'Ich spiele gern Tennis und Tischtennis.',e:'I like to play tennis and table tennis.'}
+  ],note:'"Sportart" = type of sport. "Lieblingssportart" = favourite sport. "Mögen" = to like.'},
+  {n:25,t:'hobbies',g:'Spielen Sie ein Instrument?',m:'Do you play an instrument?',a:[
+    {g:'Ja, ich spiele Gitarre / Klavier / Tabla.',e:'Yes, I play guitar / piano / tabla.'},
+    {g:'Nein, ich spiele kein Instrument.',e:'No, I don\'t play any instrument.'},
+    {g:'Ich lerne gerade, Geige zu spielen.',e:'I am currently learning to play violin.'}
+  ],note:'With instruments, NO article: "Ich spiele Gitarre", NOT "eine Gitarre". "Kein" = not any.'},
+  {n:26,t:'hobbies',g:'Was für Musik hören Sie gern?',m:'What kind of music do you like to listen to?',a:[
+    {g:'Ich höre gern Popmusik / Klassik / Jazz.',e:'I like to listen to pop music / classical / jazz.'},
+    {g:'Ich mag indische Filmmusik.',e:'I like Indian film music (Bollywood).'},
+    {g:'Ich höre gern Rock und auch Klassik.',e:'I like rock and also classical.'}
+  ],note:'"Was für" = what kind of. "Hören" = to listen. "Ich höre gern" = I like listening to.'},
+  {n:27,t:'hobbies',g:'Was lesen Sie gern?',m:'What do you like to read?',a:[
+    {g:'Ich lese gern Romane und Krimis.',e:'I like to read novels and detective stories.'},
+    {g:'Ich lese gern Wissenschaftsbücher.',e:'I like to read science books.'},
+    {g:'Ich lese nicht so gern. Ich sehe lieber Filme.',e:'I don\'t really like reading. I prefer watching films.'}
+  ],note:'"Roman" = novel. "Krimi" = detective/crime story. "Lieber" = prefer/rather (comparative of "gern").'},
+  {n:28,t:'misc',g:'Welche ist Ihre Lieblingsfarbe?',m:'What is your favourite colour?',a:[
+    {g:'Meine Lieblingsfarbe ist Blau.',e:'My favourite colour is blue.'},
+    {g:'Ich mag Grün und Schwarz.',e:'I like green and black.'},
+    {g:'Meine Lieblingsfarbe ist Rot.',e:'My favourite colour is red.'}
+  ],note:'Colours: rot (red), blau (blue), grün (green), gelb (yellow), schwarz (black), weiß (white), lila (purple).'},
+  {n:29,t:'food',g:'Was essen Sie gern? / Was ist Ihr Lieblingsgericht?',m:'What do you like to eat? / What is your favourite dish?',a:[
+    {g:'Ich esse gern indisches Essen.',e:'I like to eat Indian food.'},
+    {g:'Mein Lieblingsgericht ist Biryani.',e:'My favourite dish is biryani.'},
+    {g:'Ich mag süße Speisen.',e:'I like sweet dishes.'}
+  ],note:'"Lieblingsgericht" = favourite dish. "Gericht" = dish/meal. "Speise" = food (more formal word).'},
+  {n:30,t:'food',g:'Was trinken Sie gern? / Was ist Ihr Lieblingsgetränk?',m:'What do you like to drink? / What is your favourite drink?',a:[
+    {g:'Ich trinke gern Tee / Kaffee / Wasser.',e:'I like to drink tea / coffee / water.'},
+    {g:'Mein Lieblingsgetränk ist Orangensaft.',e:'My favourite drink is orange juice.'},
+    {g:'Ich trinke gern Chai.',e:'I like to drink chai (spiced tea).'}
+  ],note:'"Getränk" = drink/beverage. "Saft" = juice. "Orangensaft" = orange juice. "Trinken" = to drink.'},
+  {n:31,t:'food',g:'Was essen und trinken Sie nicht gern?',m:'What do you not like to eat and drink?',a:[
+    {g:'Ich esse nicht gern Fleisch.',e:'I don\'t like to eat meat.'},
+    {g:'Ich trinke nicht gern Alkohol.',e:'I don\'t like to drink alcohol.'},
+    {g:'Ich mag keine scharfen Speisen.',e:'I don\'t like spicy food.'}
+  ],note:'Negation: "nicht gern" = don\'t like to. "Keine" negates nouns: "keine scharfen Speisen" (no spicy food).'},
+  {n:32,t:'food',g:'Was essen und trinken Sie zum Frühstück / zu Mittag / zum Abendbrot?',m:'What do you eat and drink for breakfast / lunch / dinner?',a:[
+    {g:'Zum Frühstück esse ich Toast und Eier und trinke Tee.',e:'For breakfast I eat toast and eggs and drink tea.'},
+    {g:'Zu Mittag esse ich Reis mit Gemüse.',e:'For lunch I eat rice with vegetables.'},
+    {g:'Zum Abendbrot esse ich Chapati und Daal.',e:'For dinner I eat chapati and daal.'}
+  ],note:'"Frühstück" = breakfast. "Mittagessen" = lunch. "Abendbrot" = dinner. "Zum" = to the (dative contraction).'},
+  {n:33,t:'food',g:'Kochen Sie gern? Was kochen Sie?',m:'Do you like to cook? What do you cook?',a:[
+    {g:'Ja, ich koche gern. Ich koche oft Curry und Reis.',e:'Yes, I like to cook. I often cook curry and rice.'},
+    {g:'Manchmal koche ich indische Gerichte.',e:'Sometimes I cook Indian dishes.'},
+    {g:'Nein, ich koche nicht so gern. Ich bestelle lieber.',e:'No, I don\'t like to cook much. I prefer to order.'}
+  ],note:'"Oft" = often. "Manchmal" = sometimes. "Bestellen" = to order food. "Lieber" = prefer/rather.'},
+  {n:34,t:'time',g:'Wieviel Uhr ist es jetzt?',m:'What time is it now?',a:[
+    {g:'Es ist zehn Uhr.',e:'It is ten o\'clock (10:00).'},
+    {g:'Es ist halb drei.',e:'It is half past two (2:30) — NOT half past three!'},
+    {g:'Es ist Viertel nach vier.',e:'It is quarter past four (4:15).'},
+    {g:'Es ist Viertel vor fünf.',e:'It is quarter to five (4:45).'}
+  ],note:'Key trap: "halb drei" = 2:30, NOT 3:30! Think of it as "halfway to three". "Viertel nach" = quarter past. "Viertel vor" = quarter to.'},
+  {n:35,t:'family',g:'Was ist Ihr Vater / Ihre Mutter von Beruf?',m:'What is your father\'s / mother\'s profession?',a:[
+    {g:'Mein Vater ist Ingenieur / Arzt / Lehrer.',e:'My father is an engineer / doctor / teacher.'},
+    {g:'Meine Mutter ist Hausfrau / Lehrerin / Ärztin.',e:'My mother is a housewife / teacher / doctor.'},
+    {g:'Mein Vater arbeitet bei einer Firma.',e:'My father works at a company.'}
+  ],note:'No article with professions: "Er ist Arzt", NOT "Er ist ein Arzt". Female forms: Lehrer→Lehrerin, Arzt→Ärztin.'},
+  {n:36,t:'family',g:'Haben Sie Geschwister?',m:'Do you have siblings?',a:[
+    {g:'Ja, ich habe eine Schwester und einen Bruder.',e:'Yes, I have a sister and a brother.'},
+    {g:'Nein, ich bin Einzelkind.',e:'No, I am an only child.'},
+    {g:'Ja, ich habe Geschwister.',e:'Yes, I have siblings.'}
+  ],note:'"Geschwister" = siblings (always plural). "Bruder" = brother. "Schwester" = sister. "Einzelkind" = only child.'},
+  {n:37,t:'family',g:'Wieviele Geschwister haben Sie?',m:'How many siblings do you have?',a:[
+    {g:'Ich habe zwei Geschwister.',e:'I have two siblings.'},
+    {g:'Ich habe einen Bruder und zwei Schwestern.',e:'I have one brother and two sisters.'},
+    {g:'Ich habe keine Geschwister. Ich bin Einzelkind.',e:'I have no siblings. I am an only child.'}
+  ],note:'"Wieviele" = how many. "Einen Bruder" = accusative masculine. "Eine Schwester" = accusative feminine.'},
+  {n:38,t:'family',g:'Was können Sie noch über Ihre Familie sagen?',m:'What else can you say about your family?',a:[
+    {g:'Meine Familie ist groß. Wir sind fünf Personen.',e:'My family is large. We are five people.'},
+    {g:'Mein Vater ist Arzt, meine Mutter ist Lehrerin und ich habe eine jüngere Schwester.',e:'My father is a doctor, my mother is a teacher, and I have a younger sister.'},
+    {g:'Wir sind eine sehr enge Familie.',e:'We are a very close family.'}
+  ],note:'"Groß" = big. "Klein" = small. "Jünger" = younger. "Älter" = older. Great chance to combine sentences!'},
+  {n:39,t:'time',g:'Wie oft gehen Sie aus? (Kino / Café / Disco / Kneipe)',m:'How often do you go out? (cinema / café / disco / pub)',a:[
+    {g:'Ich gehe einmal pro Woche aus.',e:'I go out once a week.'},
+    {g:'Ich gehe oft ins Kino und manchmal ins Café.',e:'I often go to the cinema and sometimes to the café.'},
+    {g:'Ich gehe selten aus. Ich bleibe lieber zu Hause.',e:'I rarely go out. I prefer to stay at home.'}
+  ],note:'Frequency scale: immer (always) → oft (often) → manchmal (sometimes) → selten (rarely) → nie (never).'},
+  {n:40,t:'hobbies',g:'Wohin gehen Sie gern und wohin gehen Sie nicht gern?',m:'Where do you like to go and where don\'t you like to go?',a:[
+    {g:'Ich gehe gern ins Kino, aber nicht gern in die Kneipe.',e:'I like going to the cinema, but not to the pub.'},
+    {g:'Ich gehe gern in den Park und ins Museum.',e:'I like going to the park and to the museum.'},
+    {g:'Ich gehe gern einkaufen, aber nicht ins Fitnessstudio.',e:'I like to go shopping, but not to the gym.'}
+  ],note:'"Wohin" = to where (direction). "Ins" (neuter), "in den" (masculine), "in die" (feminine) — direction uses accusative case.'},
+  {n:41,t:'time',g:'Was machen Sie heute Abend? / Wohin gehen Sie heute Abend?',m:'What are you doing this evening? / Where are you going?',a:[
+    {g:'Heute Abend bleibe ich zu Hause und lerne.',e:'This evening I will stay at home and study.'},
+    {g:'Ich gehe heute Abend ins Kino / in ein Restaurant.',e:'I am going to the cinema / a restaurant this evening.'},
+    {g:'Heute Abend treffe ich meine Freunde.',e:'This evening I am meeting my friends.'}
+  ],note:'"Heute Abend" = this evening / tonight. German present tense can naturally express near future plans!'},
+  {n:42,t:'time',g:'Was kann man am Wochenende in Ihrer Stadt machen?',m:'What can one do in your city at the weekend?',a:[
+    {g:'Man kann im Park spazieren gehen.',e:'One can go for a walk in the park.'},
+    {g:'Man kann Museen besuchen oder shoppen gehen.',e:'One can visit museums or go shopping.'},
+    {g:'In Bangalore kann man viele Cafés und Restaurants besuchen.',e:'In Bangalore, one can visit many cafés and restaurants.'}
+  ],note:'"Man kann" = one can / you can (impersonal). Very useful phrase! "Am Wochenende" = at the weekend.'},
+  {n:43,t:'misc',g:'Was können Sie gut? Nennen Sie drei Beispiele.',m:'What are you good at? Name three examples.',a:[
+    {g:'Ich kann gut kochen, Englisch sprechen und Mathematik.',e:'I can cook well, speak English, and do maths.'},
+    {g:'Ich kann gut singen, programmieren und organisieren.',e:'I can sing well, program, and organise.'},
+    {g:'Ich kann gut Sport treiben, schnell lernen und gut zuhören.',e:'I can do sports, learn quickly, and listen well.'}
+  ],note:'"Können" = can / to be able to. Modal verb: the main verb goes to the END of the sentence!'},
+  {n:44,t:'misc',g:'Was können Sie nicht gut?',m:'What are you not good at?',a:[
+    {g:'Ich kann nicht gut tanzen.',e:'I can\'t dance well.'},
+    {g:'Ich kann nicht gut zeichnen.',e:'I can\'t draw well.'},
+    {g:'Leider kann ich nicht gut singen.',e:'Unfortunately, I can\'t sing well.'}
+  ],note:'"Leider" = unfortunately — a great filler word! "Zeichnen" = to draw. "Tanzen" = to dance.'},
+  {n:45,t:'misc',g:'Was ist Ihr Traumberuf?',m:'What is your dream job?',a:[
+    {g:'Mein Traumberuf ist Ingenieur / Arzt / Lehrer.',e:'My dream job is engineer / doctor / teacher.'},
+    {g:'Ich möchte gern Software-Entwickler werden.',e:'I would like to become a software developer.'},
+    {g:'Ich träume davon, Unternehmer zu werden.',e:'I dream of becoming an entrepreneur.'}
+  ],note:'"Traumberuf" = dream job. "Werden" = to become. "Möchte" = would like to. No article with professions!'},
+  {n:46,t:'hobbies',g:'Gehen Sie gern shoppen? Was kaufen Sie gern?',m:'Do you like shopping? What do you like to buy?',a:[
+    {g:'Ja, ich gehe gern shoppen. Ich kaufe gern Bücher und Kleidung.',e:'Yes, I like shopping. I like to buy books and clothes.'},
+    {g:'Ich kaufe gern Elektronik und Sportartikel.',e:'I like to buy electronics and sports goods.'},
+    {g:'Ich gehe nicht so gern shoppen. Ich bestelle lieber online.',e:'I don\'t really like shopping. I prefer to order online.'}
+  ],note:'"Kleidung" = clothing. "Kaufen" = to buy. "Shoppen gehen" = to go shopping.'},
+  {n:47,t:'misc',g:'Wer ist Ihr Lieblingsmensch?',m:'Who is your favourite person?',a:[
+    {g:'Mein Lieblingsmensch ist meine Mutter.',e:'My favourite person is my mother.'},
+    {g:'Mein Lieblingsmensch ist mein bester Freund / meine beste Freundin.',e:'My favourite person is my best friend (m / f).'},
+    {g:'Mein Lieblingsmensch ist mein Großvater, weil er sehr weise ist.',e:'My favourite person is my grandfather, because he is very wise.'}
+  ],note:'"Weil" = because — verb goes to the END of the clause! "Er ist weise" → "weil er weise IST". Key grammar rule!'},
+  {n:48,t:'misc',g:'Welches ist Ihr Lieblingsfilm / Lieblingsbuch?',m:'What is your favourite film / book?',a:[
+    {g:'Mein Lieblingsfilm ist [Filmtitel].',e:'My favourite film is [film title].'},
+    {g:'Mein Lieblingsbuch ist [Buchtitel] von [Autor].',e:'My favourite book is [title] by [author].'},
+    {g:'Ich mag Actionfilme / Dokumentarfilme sehr gern.',e:'I like action films / documentaries a lot.'}
+  ],note:'Add a reason: "weil er sehr spannend ist" (because it is very exciting). "Spannend" = exciting/thrilling.'},
+  {n:49,t:'misc',g:'Welche Länder möchten Sie besuchen?',m:'Which countries would you like to visit?',a:[
+    {g:'Ich möchte gern Deutschland besuchen.',e:'I would like to visit Germany.'},
+    {g:'Ich möchte Japan und Frankreich besuchen.',e:'I would like to visit Japan and France.'},
+    {g:'Ich würde gern die ganze Welt bereisen.',e:'I would like to travel the whole world.'}
+  ],note:'"Möchten" = would like to. "Besuchen" = to visit. Germany in German is "Deutschland" — use German country names!'},
+  {n:50,t:'misc',g:'Wer ist Ihr Vorbild / persönlicher Held?',m:'Who is your role model / personal hero?',a:[
+    {g:'Mein Vorbild ist mein Vater / meine Mutter.',e:'My role model is my father / mother.'},
+    {g:'Mein persönlicher Held ist [Name], weil er/sie sehr mutig ist.',e:'My personal hero is [Name], because he/she is very brave.'},
+    {g:'Ich bewundere Dr. APJ Abdul Kalam, weil er eine große Inspiration ist.',e:'I admire Dr. APJ Abdul Kalam because he is a great inspiration.'}
+  ],note:'"Vorbild" = role model. "Bewundern" = to admire. "Mutig" = brave. Remember: "weil" → verb at the end!'}
+];
+
+let aT='all',sT='';
+function hl(t){if(!sT)return t;const r=new RegExp('('+sT.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return t.replace(r,'<mark>$1</mark>');}
+function render(list){
+  const c=document.getElementById('list'),e=document.getElementById('empty'),n=document.getElementById('cnt');
+  c.innerHTML='';
+  if(!list.length){e.style.display='block';n.textContent='';return;}
+  e.style.display='none';
+  n.textContent=list.length+' of '+Q.length+' questions';
+  list.forEach(q=>{
+    const d=document.createElement('div');d.className='card';
+    const dc=TC[q.t]||'dm';
+    const ah=q.a.map(a=>`<div class="ai"><span class="ag">${hl(a.g)}</span><span class="ae">${hl(a.e)}</span></div>`).join('');
+    const nh=q.note?`<div class="note"><span class="ni">💡</span><span class="nt">${q.note}</span></div>`:'';
+    d.innerHTML=`<div class="qh" onclick="tog(this)"><div class="qn">${q.n}</div><div class="qt"><div class="qg"><span class="dot ${dc}"></span>${hl(q.g)}</div><div class="qe">${hl(q.m)}</div></div><div class="chev">▾</div></div><div class="qb"><div class="qbi"><div class="albl">Answers</div>${ah}${nh}</div></div>`;
+    c.appendChild(d);
+  });
+}
+function go(){
+  let l=Q;
+  if(aT!=='all')l=l.filter(q=>q.t===aT);
+  if(sT){const s=sT.toLowerCase();l=l.filter(q=>q.g.toLowerCase().includes(s)||q.m.toLowerCase().includes(s)||q.a.some(a=>a.g.toLowerCase().includes(s)||a.e.toLowerCase().includes(s))||(q.note&&q.note.toLowerCase().includes(s)));}
+  render(l);
+}
+function doSearch(){sT=document.getElementById('si').value.trim();document.getElementById('clrBtn').classList.toggle('on',sT.length>0);go();}
+function clearS(){document.getElementById('si').value='';sT='';document.getElementById('clrBtn').classList.remove('on');go();}
+function setT(t,b){aT=t;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));b.classList.add('on');go();}
+function tog(h){const c=h.closest('.card'),o=c.classList.contains('op');document.querySelectorAll('.card.op').forEach(x=>x.classList.remove('op'));if(!o)c.classList.add('op');}
+function xpndAll(){const cs=document.querySelectorAll('.card'),any=[...cs].some(c=>c.classList.contains('op'));if(any)cs.forEach(c=>c.classList.remove('op'));else cs.forEach(c=>c.classList.add('op'));}
+go();
+</script>
+</body>
+</html>
